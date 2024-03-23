@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Compile Main.java
-javac Main.java
+javac main.java
 
 # Clear time_analyses.txt file
 > ./txt_files/time_analyses.txt
@@ -9,7 +9,7 @@ javac Main.java
 # Loop through thread_num and pod values
 for thread_num in 1 5 10; do
     for pod in $(seq 1 100); do
-        java Main $thread_num $pod
+        java main $thread_num $pod
     done
 done
 
