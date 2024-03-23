@@ -6,24 +6,24 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Main {
     // Input and output file paths
-    static String input = "./txt_files/Entrada01.txt";
-    static String output = "./txt_files/Prime_numbers.txt";
+    static String input = "./txt_files/input_data.txt";
+    static String output = "./txt_files/prime_numbers.txt";
     static String timeAnalyses = "./txt_files/time_analyses.txt"; // Path to time analyses file
 
-    public static void main(String[] args) {
+    public static void main(String args[]) {
         // Clear existing content in Prime_numbers.txt and time_analyses.txt files
         clearFile(output);
-        clearFile(timeAnalyses);
 
-        Scanner scanner = new Scanner(System.in);
+        if (args.length < 2) {
+            System.out.println("Usage: java Main <num_threads> <percentage_of_data>");
+            return;
+        }
 
-        // Prompt the user to choose the number of threads
-        System.out.println("Choose the amount of threads you want to use: 1, 5, 10");
-        int num_threads = scanner.nextInt();
+        int num_threads = Integer.parseInt(args[0]);
+        int percentage_of_data = Integer.parseInt(args[1]);
 
         // Array to hold threads
         Thread threads[] = new Thread[num_threads];
@@ -35,7 +35,7 @@ public class Main {
 
         try {
             // Count total lines in the input file
-            int totalLines = count_lines(input);
+            int totalLines = (count_lines(input) * percentage_of_data)/100;
             // Calculate lines per thread
             int linesPerThread = totalLines / num_threads;
 
@@ -59,16 +59,13 @@ public class Main {
             double seconds = (double) elapsedTime / 1_000_000_000.0; // Convert nanoseconds to seconds
 
             // Write elapsed time to the time_analyses.txt file
-            MyRunnable.writeTimeAnalysis(seconds);
+            MyRunnable.writeTimeAnalysis(num_threads, seconds, percentage_of_data);
             
 
         } catch (IOException e) {
             // Handle IOException
             System.err.println("Error reading the file: " + e.getMessage());
-        } finally {
-            // Close scanner
-            scanner.close();
-        }
+        } 
 
         // Wait for all threads to finish
         for(Thread t: threads){

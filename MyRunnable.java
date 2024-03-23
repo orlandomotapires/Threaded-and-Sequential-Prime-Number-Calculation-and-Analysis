@@ -64,14 +64,17 @@ public class MyRunnable implements Runnable {
     }
 
     // Method to write elapsed time to the time_analyses.txt file
-    static synchronized void writeTimeAnalysis(double elapsedTime) {
+    static synchronized void writeTimeAnalysis(int num_threads, double elapsedTime, int percentage_of_data) {
         try {
             // Open buffered writer to append to the time_analyses.txt file
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(Main.timeAnalyses, true));
             // Write thread name and elapsed time to the file
+
+            bufferedWriter.write(Integer.toString(num_threads) + " ");
+            bufferedWriter.write(Double.toString(elapsedTime) + " ");
+            bufferedWriter.write(Integer.toString(percentage_of_data) + " ");
             bufferedWriter.newLine();
-            bufferedWriter.write(Double.toString(elapsedTime));
-            bufferedWriter.newLine();
+            
             // Close the buffered writer
             bufferedWriter.close();
         } catch (IOException e) {

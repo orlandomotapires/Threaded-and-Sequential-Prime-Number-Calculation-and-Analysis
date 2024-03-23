@@ -1,61 +1,60 @@
 # Threaded and Sequential Prime Number Calculation and Analysis
 
-This project involves the multi-threaded calculation of prime numbers from an input file and the analysis of each thread's performance. Three main files are used for this project:
-
-`Main.java:` This file coordinates the multi-threaded prime number calculation and handles the file I/O operations. It utilizes Java's Thread class to spawn multiple threads, each responsible for processing a portion of the input file. After the calculation, it writes the prime numbers found by each thread to the output file (Prime_numbers.txt) and records the time taken by each thread in the time_analyses.txt file.
-
-`MyRunnable.java:` This file contains the implementation of the MyRunnable class, which represents the task performed by each thread. Each thread reads a portion of the input file, checks for prime numbers using the trial division algorithm, and records the elapsed time for processing a subset of lines. The elapsed time for each subset of lines is then written to the time_analyses.txt file.
-
-`Trial_division_algorithm:` This file contains the implementation of the trial division algorithm, which is used by each thread to check whether a number is prime.
-
-### There are many algorithms to check prime numbers
-
-- Trial Division: This is the most straightforward method. You check whether the number is divisible by any integer from 2 up to the square root of the number. If it's not divisible by any number in this range, it's prime.
-
-- Miller-Rabin Primality Test: This is a probabilistic algorithm that is highly efficient and widely used for large numbers. It repeatedly applies a test that is probabilistically accurate in determining whether a number is prime. It can be adjusted to provide a desired level of certainty.
-
-- AKS Primality Test: This is a deterministic algorithm based on polynomial time complexity. It determines whether a given number is prime in polynomial time, but it's typically less efficient in practice compared to Miller-Rabin for large numbers due to its higher constant factors.
-
-- Solovay-Strassen Primality Test: Another probabilistic algorithm similar to Miller-Rabin but using a different approach.
-
-In this approach, will be used the <b>*Trial Division algorithm.*</b>
+This project entails the calculation of prime numbers using both multi-threaded and sequential approaches, along with an analysis of the performance of each method. Three main files are central to this project:
 
 ## Implementation Details
 
-`Main.java:`
+### `Main.java`
 
-Reads the input file to determine the number of lines.
-Spawns multiple threads, dividing the workload evenly among them.
-Each thread processes a portion of the input file, checking for prime numbers.
-After processing, each thread writes the prime numbers found to the output file and records its processing time.
-Utilizes synchronization to ensure safe writing to the time_analyses.txt file.
+This file orchestrates the multi-threaded prime number calculation and manages file input/output operations. Leveraging Java's Thread class, it spawns multiple threads, each tasked with processing a segment of the input file. Post-calculation records the prime numbers discovered by each thread in the output file (Prime_numbers.txt) and logs the processing time of each thread in the time_analyses.txt file.
 
-`MyRunnable.java:`
+- Determines the number of lines in the input file.
+- Spawns multiple threads, distributing the workload evenly.
+- Each thread processes a distinct portion of the input file to identify prime numbers.
+- Records the prime numbers found by each thread and their processing time.
+- Employs synchronization mechanisms for secure write operations to the time_analyses.txt file.
 
-Represents the task performed by each thread.
-Reads a portion of the input file and checks for prime numbers.
-Records the elapsed time for processing a subset of lines and writes it to the time_analyses.txt file.
-Utilizes the trial division algorithm to determine prime numbers.
+### `MyRunnable.java`
 
-`Trial_division_algorithm:`
+This file encapsulates the MyRunnable class, representing the task executed by each thread. Within this task, each thread reads a segment of the input file, applies the trial division algorithm to identify prime numbers, and logs the elapsed time for processing a subset of lines in the time_analyses.txt file.
 
-Contains the implementation of the trial division algorithm, a simple method for checking the primality of a number.
-The project aims to demonstrate the efficiency of multi-threading in prime number calculation and provides insights into the performance of individual threads through time analysis. The use of multiple threads allows for parallel processing, reducing the overall computation time compared to a single-threaded approach.
+- Defines the task executed by individual threads.
+- Reads a portion of the input file and identifies prime numbers.
+- Records the processing time for each subset of lines in the time_analyses.txt file.
+- Utilizes the trial division algorithm for prime number identification.
 
-## Time analyses
+### `Trial_division_algorithm.java`
 
-### 1 Thread (Sequential)
+This file houses the trial division algorithm implementation, which serves as the primary method for prime number validation utilized by each thread.
 
-Using 1 thread the time spent since the moment of building the threads and starting it until all the thread(s) finish their work took ***0.000670609*** seconds.
+- Implements the trial division algorithm, a straightforward method for prime number validation.
+- The project aims to showcase the efficiency of multi-threading in prime number calculation while offering insights into individual thread performance through time analysis. Multi-threading enables parallel processing, thereby reducing overall computation time compared to a single-threaded approach.
 
-### 5 Threads (Parallel)
+## Prime Number Checking Algorithms
 
-Using 5 threads the time spent since the moment of building the threads and starting it until all the thread(s) finish their work took ***0.001135529*** seconds.
+There exist various algorithms for prime number validation, including:
 
-### 10 Threads (Parallel)
+- **Trial Division:** A straightforward method involving checking divisibility by integers up to the square root of the number.
+- **Miller-Rabin Primality Test:** A probabilistic algorithm offering high efficiency for large numbers.
+- **AKS Primality Test:** A deterministic algorithm with polynomial time complexity.
+- **Solovay-Strassen Primality Test:** Another probabilistic algorithm akin to Miller-Rabin.
 
-Using 10 threads the time spent since the moment of building the threads and starting it until all the thread(s) finish their work took ***0.001596632*** seconds.
+In this project, the <b>*Trial Division algorithm*</b> is utilized.
+
+## How to run this code
+
+To obtain the final graph, just run `bash run.sh`, this code will compile the `Main.java`, and run the code through 1 to 100 percent of data for the three variations of threads, 1, 5 and 10. Finally, it will run the python code `python_analyses.py` to create the graph.
+
+## Algorithm Complexity (Big O notation)
+
+The Trial Division algorithm, employed in the final solution, demonstrates a complexity of **O(n * sqrt(n))**. This complexity stems from the algorithm's inherent **O(sqrt(n))** complexity per element, which is then multiplied by the total number of elements, **n**. While this complexity is not negligible, it might not warrant the parallelization of the algorithm due to its manageable scale.
+
+## Time Analyses
+
+The following image illustrates the project's execution, depicting variations in data usage from 1 to 100 percent alongside changes in the thread count.
+
+![Data results](./assets/Data_results.png)
 
 ## Conclusions
 
-It was determined that the time invested in creating and managing threads for the parallel approach did not yield significant improvements over the sequential approach. This indicates that the problem at hand is not sufficiently large to justify the overhead of parallelization. Therefore, the sequential approach remains sufficient for solving the problem, and there is no need to parallelize it.
+Upon analysis, it was determined that the time invested in thread creation and management for the parallel approach did not yield significant improvements over the sequential method. This suggests that the problem scale does not warrant the overhead of parallelization, rendering the sequential approach sufficient for problem resolution without the need for parallelization.
