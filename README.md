@@ -1,6 +1,6 @@
 # Threaded and Sequential Prime Number Calculation and Analysis
 
-This project entails the calculation of prime numbers using both multi-threaded and sequential approaches, along with an analysis of the performance of each method. Three main files are central to this project:
+This project entails the calculation of prime numbers using both multi-threaded and sequential approaches, along with an analysis of the performance of each method.
 
 ## Implementation Details
 

@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyRunnable implements Runnable {
+public class my_runnable implements Runnable {
     // Instance variables to store start and end line numbers, thread number, and array of lists
     private final int startLine;
     private final int endLine;
@@ -15,7 +15,7 @@ public class MyRunnable implements Runnable {
     private final List<Integer>[] arrayOfLists; 
     
     // Constructor to initialize instance variables
-    public MyRunnable(int startLine, int endLine, int num_threads, int num_thread, List<Integer>[] arrayOfLists) {
+    public my_runnable(int startLine, int endLine, int num_threads, int num_thread, List<Integer>[] arrayOfLists) {
         this.startLine = startLine;
         this.endLine = endLine;
         this.arrayOfLists = arrayOfLists; // Assign the provided array of lists
@@ -26,7 +26,7 @@ public class MyRunnable implements Runnable {
     public void run() {
         try {
             // Open buffered reader to read from the input file
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(Main.input));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(main.input));
 
             String line;
             int lineNumber = 0;
@@ -43,7 +43,7 @@ public class MyRunnable implements Runnable {
                 int numberToCheck = Integer.parseInt(line); // Convert the string number to integer
 
                 // Check if the number is prime
-                if (Trial_division_algorithm.isPrime_Trial_division(numberToCheck)) {
+                if (trial_division_algorithm.isPrime_Trial_division(numberToCheck)) {
                     // If the list for this thread is null, initialize it
                     if (arrayOfLists[this.num_thread] == null) {
                         arrayOfLists[this.num_thread] = new ArrayList<>();
@@ -67,7 +67,7 @@ public class MyRunnable implements Runnable {
     static synchronized void writeTimeAnalysis(int num_threads, double elapsedTime, int percentage_of_data) {
         try {
             // Open buffered writer to append to the time_analyses.txt file
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(Main.timeAnalyses, true));
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(main.timeAnalyses, true));
             // Write thread name and elapsed time to the file
 
             bufferedWriter.write(Integer.toString(num_threads) + " ");

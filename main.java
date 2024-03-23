@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
+public class main {
     // Input and output file paths
     static String input = "./txt_files/input_data.txt";
     static String output = "./txt_files/prime_numbers.txt";
@@ -50,7 +50,7 @@ public class Main {
                 if (i == num_threads - 1) endLine = totalLines;
 
                 // Create and start thread
-                threads[i] = new Thread(new MyRunnable(startLine, endLine, num_threads, i, arrayOfLists));
+                threads[i] = new Thread(new my_runnable(startLine, endLine, num_threads, i, arrayOfLists));
                 threads[i].start();
             }
 
@@ -59,7 +59,7 @@ public class Main {
             double seconds = (double) elapsedTime / 1_000_000_000.0; // Convert nanoseconds to seconds
 
             // Write elapsed time to the time_analyses.txt file
-            MyRunnable.writeTimeAnalysis(num_threads, seconds, percentage_of_data);
+            my_runnable.writeTimeAnalysis(num_threads, seconds, percentage_of_data);
             
 
         } catch (IOException e) {
@@ -100,7 +100,7 @@ public class Main {
     public static void insert_final_file(List<Integer>[] arrayOfLists){
         try {
             // Open buffered writer for appending to the output file
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(Main.output, true));
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(main.output, true));
             // Iterate through each list in arrayOfLists
             for(List<Integer> al: arrayOfLists) {
                 // Iterate through each integer in the list

@@ -1,5 +1,5 @@
 
-public class Trial_division_algorithm {
+public class trial_division_algorithm {
     public static boolean isPrime_Trial_division(int n) {
         if (n <= 1) {
             return false;
