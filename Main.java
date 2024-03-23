@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -9,9 +10,9 @@ import java.util.Scanner;
 
 public class Main {
     // Input and output file paths
-    static String input = "./Entrada01.txt";
-    static String output = "./Prime_numbers.txt";
-    static String timeAnalyses = "./time_analyses.txt"; // Path to time analyses file
+    static String input = "./txt_files/Entrada01.txt";
+    static String output = "./txt_files/Prime_numbers.txt";
+    static String timeAnalyses = "./txt_files/time_analyses.txt"; // Path to time analyses file
 
     public static void main(String[] args) {
         // Clear existing content in Prime_numbers.txt and time_analyses.txt files

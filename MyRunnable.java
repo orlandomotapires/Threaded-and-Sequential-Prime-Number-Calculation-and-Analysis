@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -36,7 +37,6 @@ public class MyRunnable implements Runnable {
                 lineNumber++;
             }
             
-            int lineCount = 0; // Counter for the lines read
             // Read and process lines within the block assigned to this thread
             while (lineNumber < endLine && (line = bufferedReader.readLine()) != null) {
                 
